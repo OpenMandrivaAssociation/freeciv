@@ -145,7 +145,6 @@ Icon=%{name}-server
 Terminal=true
 Type=Application
 Categories=ConsoleOnly;Game;StrategyGame;X-MandrivaLinux-MoreApplications-Games-Strategy;
-Encoding=UTF-8
 EOF
 
 %find_lang %{name}
