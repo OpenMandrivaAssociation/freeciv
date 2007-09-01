@@ -1,6 +1,6 @@
 %define	name	freeciv
 %define version	2.0.9
-%define rel	1
+%define rel	2
 %define release %mkrel %{rel}
 
 Name:		%{name}
@@ -79,7 +79,7 @@ bzcat %{SOURCE3} > %{name}.bash-completion
 
 %build
 autoconf
-%configure2_5x	--bindir=%{_gamesbindir} \
+%configure	--bindir=%{_gamesbindir} \
 		--datadir=%{_gamesdatadir} \
 		--enable-client=gtk-2.0 
 %make
@@ -103,37 +103,13 @@ mv %{buildroot}%{_gamesbindir}/civserver %{buildroot}%{_gamesbindir}/civserver.r
 bzcat %{SOURCE1} > %{buildroot}%{_gamesbindir}/civserver
 
 # menu entry
-mkdir -p %{buildroot}%{_menudir}
-cat > %{buildroot}%{_menudir}/%{name}-client <<EOF
-?package(%{name}-client):\
-	needs="x11"\
-	section="More Applications/Games/Strategy"\
-	title="Freeciv client"\
-	longtitle="The Free Civilization Clone"\
-	command="%{_gamesbindir}/civclient"\
-	icon="%{name}-client.png"\
-	xdg="true"
-EOF
-
 desktop-file-install	--vendor="" \
 			--remove-category="Application" \
 			--remove-category="GNOME" \
 			--remove-category="Strategy" \
 			--add-category="GTK" \
 			--add-category="Game;StrategyGame" \
-			--add-category="X-MandrivaLinux-MoreApplications-Games-Strategy" \
 			--dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
-
-cat > %{buildroot}%{_menudir}/%{name}-server <<EOF
-?package(%{name}-server):\
-	needs="text"\
-	section="More Applications/Games/Strategy"\
-	title="Freeciv server"\
-	longtitle="The Free Civilization Clone (server)"\
-	command="%{_gamesbindir}/civserver"\
-	icon="%{name}-server.png"\
-	xdg="true"
-EOF
 
 mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}-server.desktop << EOF
@@ -144,7 +120,7 @@ Exec=%{_gamesbindir}/civserver
 Icon=%{name}-server
 Terminal=true
 Type=Application
-Categories=ConsoleOnly;Game;StrategyGame;X-MandrivaLinux-MoreApplications-Games-Strategy;
+Categories=ConsoleOnly;Game;StrategyGame;
 EOF
 
 %find_lang %{name}
@@ -178,7 +154,6 @@ rm -rf %{buildroot}
 %{_gamesbindir}/civclient
 %{_gamesbindir}/civmanual
 %defattr(644,root,root,0755)
-%{_menudir}/%{name}-client
 %{_iconsdir}/%{name}-client.png
 %{_miconsdir}/%{name}-client.png
 %{_liconsdir}/%{name}-client.png
@@ -189,7 +164,6 @@ rm -rf %{buildroot}
 %defattr(755,root,games,0755)
 %{_gamesbindir}/civserver*
 %defattr(644,root,root,0755)
-%{_menudir}/%{name}-server
 %{_iconsdir}/%{name}-server.png
 %{_miconsdir}/%{name}-server.png
 %{_liconsdir}/%{name}-server.png
