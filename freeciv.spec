@@ -1,6 +1,6 @@
 %define	name	freeciv
 %define version	2.0.9
-%define rel	2
+%define rel	3
 %define release %mkrel %{rel}
 
 Name:		%{name}
@@ -79,7 +79,12 @@ bzcat %{SOURCE3} > %{name}.bash-completion
 
 %build
 autoconf
-%configure	--bindir=%{_gamesbindir} \
+
+#workaround for segfault when building a city
+CFLAGS=`echo "$RPM_OPT_FLAGS $LFSFLAGS -D_GNU_SOURCE"| \
+sed -e 's/-O2/-O1/g;s/-g//g'`
+
+%configure2_5x	--bindir=%{_gamesbindir} \
 		--datadir=%{_gamesdatadir} \
 		--enable-client=gtk-2.0 
 %make
@@ -103,12 +108,15 @@ mv %{buildroot}%{_gamesbindir}/civserver %{buildroot}%{_gamesbindir}/civserver.r
 bzcat %{SOURCE1} > %{buildroot}%{_gamesbindir}/civserver
 
 # menu entry
+
+perl -pi -e 's,%{name}-client.png,%{name}-client,g' %{buildroot}%{_datadir}/applications/*
+
 desktop-file-install	--vendor="" \
 			--remove-category="Application" \
 			--remove-category="GNOME" \
 			--remove-category="Strategy" \
 			--add-category="GTK" \
-			--add-category="Game;StrategyGame" \
+			--add-category="StrategyGame" \
 			--dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 mkdir -p %{buildroot}%{_datadir}/applications
