@@ -116,26 +116,23 @@ install -m644 %{name}.bash-completion -D %{buildroot}%{_sysconfdir}/bash_complet
 rm -rf %{buildroot}
 
 %files -f %{name}.lang data
-%defattr(644,root,root,0755)
+%defattr(-,root,root)
 %doc AUTHORS doc/BUGS doc/HOWTOPLAY NEWS doc/README doc/README.AI doc/README.graphics doc/README.rulesets doc/README.sound doc/HACKING
-%defattr(644,root,games,0755)
 %{_gamesdatadir}/%{name}
 %config(noreplace) %{_sysconfdir}/bash_completion.d/%{name}
 
 %files client
-%defattr(755,root,games,0755)
+%defattr(-,root,root)
 %{_gamesbindir}/civclient
 %{_gamesbindir}/civmanual
-%defattr(644,root,root,0755)
 %{_mandir}/man6/civclient.6*
 %{_datadir}/applications/freeciv.desktop
 %{_datadir}/pixmaps/freeciv-client.png
 %{_iconsdir}/hicolor/*/apps/freeciv-client.png
 
 %files server
-%defattr(755,root,games,0755)
+%defattr(-,root,root)
 %{_gamesbindir}/civserver*
-%defattr(644,root,root,0755)
 %{_mandir}/man6/civserver.6*
 %{_datadir}/applications/freeciv-server.desktop
 %{_iconsdir}/hicolor/*/apps/freeciv-server.png
