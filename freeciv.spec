@@ -1,6 +1,6 @@
 %define	name	freeciv
-%define version	2.0.9
-%define rel	3
+%define version	2.1.0
+%define rel	1
 %define release %mkrel %{rel}
 
 Name:		%{name}
@@ -17,9 +17,6 @@ Source12:	%{name}-client.48.png
 Source20:	%{name}-server.16.png
 Source21:	%{name}-server.32.png
 Source22:	%{name}-server.48.png
-Patch0:		freeciv-2.0.9-configure_ac_localedir.patch
-Patch1:		freeciv-1.14.1-caravan-show-shields.patch
-Patch2:		freeciv-2.0.8-fix-icon.patch
 License:	GPL
 Group:		Games/Strategy
 BuildRequires:	SDL_mixer-devel gtk+2-devel ncurses-devel readline-devel
@@ -72,17 +69,12 @@ This is the server for freeciv.
 
 %prep
 %setup -q
-%patch0 -p1 -b .locale
-%patch1 -p1 -b .caravan
-%patch2 -p1 -b .icon
 bzcat %{SOURCE3} > %{name}.bash-completion
 
 %build
-autoconf
-
 #workaround for segfault when building a city
-CFLAGS=`echo "$RPM_OPT_FLAGS $LFSFLAGS -D_GNU_SOURCE"| \
-sed -e 's/-O2/-O1/g;s/-g//g'`
+#CFLAGS=`echo "$RPM_OPT_FLAGS $LFSFLAGS -D_GNU_SOURCE"| \
+#sed -e 's/-O2/-O1/g;s/-g//g'`
 
 %configure2_5x	--bindir=%{_gamesbindir} \
 		--datadir=%{_gamesdatadir} \
@@ -111,25 +103,14 @@ bzcat %{SOURCE1} > %{buildroot}%{_gamesbindir}/civserver
 
 perl -pi -e 's,%{name}-client.png,%{name}-client,g' %{buildroot}%{_datadir}/applications/*
 
-desktop-file-install	--vendor="" \
+desktop-file-install --vendor="" \
 			--remove-category="Application" \
 			--remove-category="GNOME" \
 			--remove-category="Strategy" \
 			--add-category="GTK" \
 			--add-category="StrategyGame" \
-			--dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
-
-mkdir -p %{buildroot}%{_datadir}/applications
-cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}-server.desktop << EOF
-[Desktop Entry]
-Name=%{name}-server
-Comment=The Free Civilization Clone (server)
-Exec=%{_gamesbindir}/civserver
-Icon=%{name}-server
-Terminal=true
-Type=Application
-Categories=ConsoleOnly;Game;StrategyGame;
-EOF
+			--dir %{buildroot}%{_datadir}/applications \
+            %{buildroot}%{_datadir}/applications/*.desktop
 
 %find_lang %{name}
 
@@ -167,6 +148,8 @@ rm -rf %{buildroot}
 %{_liconsdir}/%{name}-client.png
 %{_mandir}/man6/civclient.6*
 %{_datadir}/applications/freeciv.desktop
+%{_datadir}/pixmaps/freeciv-client.png
+%{_gamesdatadir}/icons/hicolor/*/apps/freeciv-client.png
 
 %files server
 %defattr(755,root,games,0755)
@@ -176,6 +159,7 @@ rm -rf %{buildroot}
 %{_miconsdir}/%{name}-server.png
 %{_liconsdir}/%{name}-server.png
 %{_mandir}/man6/civserver.6*
-%{_datadir}/applications/mandriva-%{name}-server.desktop
+%{_datadir}/applications/freeciv-server.desktop
+%{_gamesdatadir}/icons/hicolor/*/apps/freeciv-server.png
 
 
