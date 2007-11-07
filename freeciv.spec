@@ -11,12 +11,6 @@ Source0:	ftp://ftp.freeciv.org/freeciv/stable/%{name}-%{version}.tar.bz2
 Source1:	%{name}.server.wrapper.bz2
 Source2:	stdsounds2.tar.bz2
 Source3:	%{name}.bash-completion.bz2
-Source10:	%{name}-client.16.png
-Source11:	%{name}-client.32.png
-Source12:	%{name}-client.48.png
-Source20:	%{name}-server.16.png
-Source21:	%{name}-server.32.png
-Source22:	%{name}-server.48.png
 License:	GPL
 Group:		Games/Strategy
 BuildRequires:	SDL_mixer-devel gtk+2-devel ncurses-devel readline-devel
@@ -72,13 +66,10 @@ This is the server for freeciv.
 bzcat %{SOURCE3} > %{name}.bash-completion
 
 %build
-#workaround for segfault when building a city
-#CFLAGS=`echo "$RPM_OPT_FLAGS $LFSFLAGS -D_GNU_SOURCE"| \
-#sed -e 's/-O2/-O1/g;s/-g//g'`
-
-%configure2_5x	--bindir=%{_gamesbindir} \
-		--datadir=%{_gamesdatadir} \
-		--enable-client=gtk-2.0 
+%configure2_5x \
+    --bindir=%{_gamesbindir} \
+    --datadir=%{_gamesdatadir} \
+    --enable-client=gtk-2.0 
 %make
 
 %install
@@ -87,22 +78,15 @@ rm -rf %{buildroot}
 
 tar -jxf %{SOURCE2} -C %{buildroot}%{_gamesdatadir}/%{name}
 
-# icons
-install -m644 %{SOURCE10} -D %{buildroot}%{_miconsdir}/%{name}-client.png
-install -m644 %{SOURCE11} -D %{buildroot}%{_iconsdir}/%{name}-client.png
-install -m644 %{SOURCE12} -D %{buildroot}%{_liconsdir}/%{name}-client.png
-install -m644 %{SOURCE20} -D %{buildroot}%{_miconsdir}/%{name}-server.png
-install -m644 %{SOURCE21} -D %{buildroot}%{_iconsdir}/%{name}-server.png
-install -m644 %{SOURCE22} -D %{buildroot}%{_liconsdir}/%{name}-server.png
-
 # wrapper
 mv %{buildroot}%{_gamesbindir}/civserver %{buildroot}%{_gamesbindir}/civserver.real
 bzcat %{SOURCE1} > %{buildroot}%{_gamesbindir}/civserver
 
+# fix icons locations
+mv %{buildroot}%{_gamesdatadir}/icons %{buildroot}%{_datadir}/icons
+
 # menu entry
-
-perl -pi -e 's,%{name}-client.png,%{name}-client,g' %{buildroot}%{_datadir}/applications/*
-
+perl -pi -e 's/\.png$//' %{buildroot}%{_datadir}/applications/*.desktop
 desktop-file-install --vendor="" \
 			--remove-category="Application" \
 			--remove-category="GNOME" \
@@ -143,23 +127,15 @@ rm -rf %{buildroot}
 %{_gamesbindir}/civclient
 %{_gamesbindir}/civmanual
 %defattr(644,root,root,0755)
-%{_iconsdir}/%{name}-client.png
-%{_miconsdir}/%{name}-client.png
-%{_liconsdir}/%{name}-client.png
 %{_mandir}/man6/civclient.6*
 %{_datadir}/applications/freeciv.desktop
 %{_datadir}/pixmaps/freeciv-client.png
-%{_gamesdatadir}/icons/hicolor/*/apps/freeciv-client.png
+%{_iconsdir}/hicolor/*/apps/freeciv-client.png
 
 %files server
 %defattr(755,root,games,0755)
 %{_gamesbindir}/civserver*
 %defattr(644,root,root,0755)
-%{_iconsdir}/%{name}-server.png
-%{_miconsdir}/%{name}-server.png
-%{_liconsdir}/%{name}-server.png
 %{_mandir}/man6/civserver.6*
 %{_datadir}/applications/freeciv-server.desktop
-%{_gamesdatadir}/icons/hicolor/*/apps/freeciv-server.png
-
-
+%{_iconsdir}/hicolor/*/apps/freeciv-server.png
