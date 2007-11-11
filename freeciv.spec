@@ -1,6 +1,6 @@
 %define	name	freeciv
 %define version	2.1.0
-%define rel	1
+%define rel	2
 %define release %mkrel %{rel}
 
 Name:		%{name}
@@ -81,6 +81,7 @@ tar -jxf %{SOURCE2} -C %{buildroot}%{_gamesdatadir}/%{name}
 # wrapper
 mv %{buildroot}%{_gamesbindir}/civserver %{buildroot}%{_gamesbindir}/civserver.real
 bzcat %{SOURCE1} > %{buildroot}%{_gamesbindir}/civserver
+chmod 755 %{buildroot}%{_gamesbindir}/civserver
 
 # fix icons locations
 mv %{buildroot}%{_gamesdatadir}/icons %{buildroot}%{_datadir}/icons
