@@ -8,9 +8,9 @@ Summary:	FREE CIVilization clone
 Version:	%{version}
 Release:	%{release}
 Source0:	ftp://ftp.freeciv.org/freeciv/stable/%{name}-%{version}.tar.bz2
-Source1:	%{name}.server.wrapper.bz2
+Source1:	%{name}.server.wrapper
 Source2:	stdsounds2.tar.bz2
-Source3:	%{name}.bash-completion.bz2
+Source3:	%{name}.bash-completion
 License:	GPL
 Group:		Games/Strategy
 BuildRequires:	SDL_mixer-devel gtk+2-devel ncurses-devel readline-devel
@@ -63,7 +63,6 @@ This is the server for freeciv.
 
 %prep
 %setup -q
-bzcat %{SOURCE3} > %{name}.bash-completion
 
 %build
 %configure2_5x \
@@ -80,8 +79,7 @@ tar -jxf %{SOURCE2} -C %{buildroot}%{_gamesdatadir}/%{name}
 
 # wrapper
 mv %{buildroot}%{_gamesbindir}/civserver %{buildroot}%{_gamesbindir}/civserver.real
-bzcat %{SOURCE1} > %{buildroot}%{_gamesbindir}/civserver
-chmod 755 %{buildroot}%{_gamesbindir}/civserver
+install -m 755 %{SOURCE1} %{buildroot}%{_gamesbindir}/civserver
 
 # fix icons locations
 mv %{buildroot}%{_gamesdatadir}/icons %{buildroot}%{_datadir}/icons
@@ -99,7 +97,8 @@ desktop-file-install --vendor="" \
 
 %find_lang %{name}
 
-install -m644 %{name}.bash-completion -D %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
+install -d -m 755 %{buildroot}%{_sysconfdir}/bash_completion.d
+install -m 644 %{SOURCE3} %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
 
 %post client
 %update_menus
