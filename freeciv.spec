@@ -15,6 +15,7 @@ License:	GPL
 Group:		Games/Strategy
 BuildRequires:	SDL_mixer-devel gtk+2-devel ncurses-devel readline-devel
 BuildRequires:	desktop-file-utils
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 URL:		http://www.freeciv.org/
 
 %description
