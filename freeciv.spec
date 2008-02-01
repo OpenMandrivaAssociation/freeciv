@@ -1,5 +1,5 @@
 %define	name	freeciv
-%define version	2.1.1
+%define version	2.1.3
 %define rel	1
 %define release %mkrel %{rel}
 
@@ -11,7 +11,7 @@ Source0:	ftp://ftp.freeciv.org/freeciv/stable/%{name}-%{version}.tar.bz2
 Source1:	%{name}.server.wrapper
 Source2:	stdsounds2.tar.bz2
 Source3:	%{name}.bash-completion
-License:	GPL
+License:	GPLv2+
 Group:		Games/Strategy
 BuildRequires:	SDL_mixer-devel gtk+2-devel ncurses-devel readline-devel
 BuildRequires:	desktop-file-utils
