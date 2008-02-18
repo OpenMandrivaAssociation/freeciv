@@ -4,7 +4,7 @@
 %define release %mkrel %{rel}
 
 Name:		%{name}
-Summary:	FREE CIVilization clone
+Summary:	CIVilization clone
 Version:	%{version}
 Release:	%{release}
 Source0:	ftp://ftp.freeciv.org/freeciv/stable/%{name}-%{version}.tar.bz2
