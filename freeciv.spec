@@ -1,22 +1,25 @@
 %define	name	freeciv
-%define version	2.1.3
-%define rel	1
-%define release %mkrel %{rel}
+%define version	2.1.4
+%define release %mkrel 1
 
 Name:		%{name}
-Summary:	CIVilization clone
 Version:	%{version}
 Release:	%{release}
+Summary:	CIVilization clone
+License:	GPLv2+
+Group:		Games/Strategy
+URL:		http://www.freeciv.org/
 Source0:	ftp://ftp.freeciv.org/freeciv/stable/%{name}-%{version}.tar.bz2
 Source1:	%{name}.server.wrapper
 Source2:	stdsounds2.tar.bz2
 Source3:	%{name}.bash-completion
-License:	GPLv2+
-Group:		Games/Strategy
-BuildRequires:	SDL_mixer-devel gtk+2-devel ncurses-devel readline-devel
+BuildRequires:	SDL_mixer-devel
+BuildRequires:	gtk+2-devel
+BuildRequires:	ncurses-devel
+BuildRequires:	readline-devel
 BuildRequires:	desktop-file-utils
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-URL:		http://www.freeciv.org/
+BuildRequires:	libggz-gtk-client-devel
+BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 Freeciv is a multiplayer strategy game, released under the GNU General
@@ -120,6 +123,7 @@ rm -rf %{buildroot}
 %doc AUTHORS doc/BUGS doc/HOWTOPLAY NEWS doc/README doc/README.AI doc/README.graphics doc/README.rulesets doc/README.sound doc/HACKING
 %{_gamesdatadir}/%{name}
 %config(noreplace) %{_sysconfdir}/bash_completion.d/%{name}
+%config(noreplace) %{_sysconfdir}/ggz.modules
 
 %files client
 %defattr(-,root,root)
