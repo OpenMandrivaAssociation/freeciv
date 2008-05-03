@@ -18,7 +18,7 @@ BuildRequires:	gtk+2-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	readline-devel
 BuildRequires:	desktop-file-utils
-BuildRequires:	libggz-gtk-client-devel
+BuildRequires:	ggz-gtk-client-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
