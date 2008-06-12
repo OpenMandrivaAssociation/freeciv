@@ -103,17 +103,25 @@ desktop-file-install --vendor="" \
 install -d -m 755 %{buildroot}%{_sysconfdir}/bash_completion.d
 install -m 644 %{SOURCE3} %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
 
+%if %mdkversion < 200900
 %post client
 %update_menus
+%endif
 
+%if %mdkversion < 200900
 %postun client
 %clean_menus
+%endif
 
+%if %mdkversion < 200900
 %post server
 %update_menus
+%endif
 
+%if %mdkversion < 200900
 %postun server
 %clean_menus
+%endif
 
 %clean
 rm -rf %{buildroot}
