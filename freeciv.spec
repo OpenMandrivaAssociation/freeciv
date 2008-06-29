@@ -1,5 +1,5 @@
 %define	name	freeciv
-%define version	2.1.4
+%define version	2.1.5
 %define release %mkrel 1
 
 Name:		%{name}
