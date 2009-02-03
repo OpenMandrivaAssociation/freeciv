@@ -1,6 +1,6 @@
 %define	name	freeciv
 %define version	2.1.8
-%define release %mkrel 1
+%define release %mkrel 2
 
 Name:		%{name}
 Version:	%{version}
@@ -12,7 +12,6 @@ URL:		http://www.freeciv.org/
 Source0:	ftp://ftp.freeciv.org/freeciv/stable/%{name}-%{version}.tar.bz2
 Source1:	%{name}.server.wrapper
 Source2:	stdsounds2.tar.bz2
-Source3:	%{name}.bash-completion
 BuildRequires:	SDL_mixer-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	ncurses-devel
@@ -100,9 +99,6 @@ desktop-file-install --vendor="" \
 
 %find_lang %{name}
 
-install -d -m 755 %{buildroot}%{_sysconfdir}/bash_completion.d
-install -m 644 %{SOURCE3} %{buildroot}%{_sysconfdir}/bash_completion.d/%{name}
-
 %if %mdkversion < 200900
 %post client
 %update_menus
@@ -130,7 +126,6 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc AUTHORS doc/BUGS doc/HOWTOPLAY NEWS doc/README doc/README.AI doc/README.graphics doc/README.rulesets doc/README.sound doc/HACKING
 %{_gamesdatadir}/%{name}
-%config(noreplace) %{_sysconfdir}/bash_completion.d/%{name}
 %config(noreplace) %{_sysconfdir}/ggz.modules
 
 %files client
