@@ -1,6 +1,6 @@
 %define	name	freeciv
 %define version	2.1.8
-%define release %mkrel 3
+%define release %mkrel 4
 
 Name:		%{name}
 Version:	%{version}
@@ -67,6 +67,9 @@ This is the server for freeciv.
 %setup -q
 
 %build
+#locales are not in %{_gamesdatadir}
+export localedir=%{_datadir}/locale
+
 %configure2_5x \
     --bindir=%{_gamesbindir} \
     --datadir=%{_gamesdatadir} \
