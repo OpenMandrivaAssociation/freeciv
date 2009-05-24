@@ -1,6 +1,6 @@
 %define	name	freeciv
-%define version	2.1.8
-%define release %mkrel 4
+%define version	2.1.9
+%define release %mkrel 1
 
 Name:		%{name}
 Version:	%{version}
@@ -9,7 +9,7 @@ Summary:	CIVilization clone
 License:	GPLv2+
 Group:		Games/Strategy
 URL:		http://www.freeciv.org/
-Source0:	ftp://ftp.freeciv.org/freeciv/stable/%{name}-%{version}.tar.bz2
+Source0:	http://prdownloads.sourceforge.net/freeciv/%{name}-%{version}.tar.bz2
 Source1:	%{name}.server.wrapper
 Source2:	stdsounds2.tar.bz2
 BuildRequires:	SDL_mixer-devel
