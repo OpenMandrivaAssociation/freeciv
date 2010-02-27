@@ -1,5 +1,10 @@
+# include fallback defs for _ggz_config, _ggz_datadir macros
+# feel free to drop when ggz-client-lib including these is deployed everywhere
+%{!?_ggz_config:%define _ggz_config %{_bindir}/ggz-config}
+%{!?_ggz_datadir:%define _ggz_datadir %(%{_ggz_config} --datadir >& /dev/null ||:)} 
+
 %define	name	freeciv
-%define version	2.1.11
+%define version	2.2.0
 %define release %mkrel 1
 
 Name:		%{name}
@@ -49,6 +54,8 @@ Summary:        FREE CIVilization clone - client
 Provides:	%{name}
 Obsoletes:	%{name}
 Requires:	%{name}-data = %{version} %{name}-server = %{version}
+Requires(post):	ggz-client-libs
+Requires(preun): ggz-client-libs 
 
 %description    client
 This is the graphical client for freeciv
@@ -59,6 +66,8 @@ Summary:        FREE CIVilization clone - server
 Provides:	%{name}
 Obsoletes:	%{name}
 Requires:	%{name}-data = %{version}
+Requires(post):	ggz-client-libs
+Requires(preun): ggz-client-libs 
 
 %description    server
 This is the server for freeciv.
@@ -83,14 +92,14 @@ rm -rf %{buildroot}
 tar -jxf %{SOURCE2} -C %{buildroot}%{_gamesdatadir}/%{name}
 
 # wrapper
-mv %{buildroot}%{_gamesbindir}/civserver %{buildroot}%{_gamesbindir}/civserver.real
-install -m 755 %{SOURCE1} %{buildroot}%{_gamesbindir}/civserver
+mv %{buildroot}%{_gamesbindir}/freeciv-server %{buildroot}%{_gamesbindir}/civserver.real
+install -m 755 %{SOURCE1} %{buildroot}%{_gamesbindir}/freeciv-server
 
 # fix icons locations
 mv %{buildroot}%{_gamesdatadir}/icons %{buildroot}%{_datadir}/icons
 
 # menu entry
-perl -pi -e 's/\.png$//' %{buildroot}%{_datadir}/applications/*.desktop
+#perl -pi -e 's/\.png$//' %{buildroot}%{_datadir}/applications/*.desktop
 desktop-file-install --vendor="" \
 			--remove-category="Application" \
 			--remove-category="GNOME" \
@@ -102,20 +111,47 @@ desktop-file-install --vendor="" \
 
 %find_lang %{name}
 
-%if %mdkversion < 200900
+# omit ggz.modules, to register at install, not build, time.
+rm %{buildroot}%{_sysconfdir}/ggz.modules
+# include .dsc files
+install -p -D -m644 data/civclient.dsc %{buildroot}%{_ggz_datadir}/civclient.dsc
+install -p -D -m644 data/civclient.dsc %{buildroot}%{_ggz_datadir}/civserver.dsc 
+
+#remove unneeded
+rm -f %{buildroot}%{_libdir}/*a
+rm -f %{buildroot}%{_mandir}/man6/*ftwl*
+rm -f %{buildroot}%{_mandir}/man6/*sdl*
+rm -f %{buildroot}%{_mandir}/man6/*win32*
+rm -f %{buildroot}%{_mandir}/man6/*xaw*
+
+
 %post client
+%{_ggz_config} --install --force --modfile=%{_ggz_datadir}/civclient.dsc || :
+%if %mdkversion < 200900
 %update_menus
 %endif
+
+%preun client
+if [ $1 -eq 0 ]; then
+	%{_ggz_config} --remove --modfile=%{_ggz_datadir}/civclient.dsc || :
+fi 
+
 
 %if %mdkversion < 200900
 %postun client
 %clean_menus
 %endif
 
-%if %mdkversion < 200900
 %post server
+%{_ggz_config} --install --force --modfile=%{_ggz_datadir}/civserver.dsc || :
+%if %mdkversion < 200900
 %update_menus
 %endif
+
+%preun server
+if [ $1 -eq 0 ]; then
+	%{_ggz_config} --remove --modfile=%{_ggz_datadir}/civserver.dsc || :
+fi
 
 %if %mdkversion < 200900
 %postun server
@@ -129,20 +165,24 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc AUTHORS doc/BUGS doc/HOWTOPLAY NEWS doc/README doc/README.AI doc/README.graphics doc/README.rulesets doc/README.sound doc/HACKING
 %{_gamesdatadir}/%{name}
-%config(noreplace) %{_sysconfdir}/ggz.modules
+#%config(noreplace) %{_sysconfdir}/ggz.modules
 
 %files client
 %defattr(-,root,root)
-%{_gamesbindir}/civclient
+%{_gamesbindir}/freeciv-gtk2
 %{_gamesbindir}/civmanual
-%{_mandir}/man6/civclient.6*
+%{_mandir}/man6/freeciv-client.6*
+%{_mandir}/man6/freeciv-gtk2.6*
 %{_datadir}/applications/freeciv.desktop
 %{_datadir}/pixmaps/freeciv-client.png
 %{_iconsdir}/hicolor/*/apps/freeciv-client.png
+%{_ggz_datadir}/civclient.dsc
 
 %files server
 %defattr(-,root,root)
-%{_gamesbindir}/civserver*
-%{_mandir}/man6/civserver.6*
+%{_gamesbindir}/civserver.real
+%{_gamesbindir}/freeciv-server
+%{_mandir}/man6/freeciv-server.6*
 %{_datadir}/applications/freeciv-server.desktop
 %{_iconsdir}/hicolor/*/apps/freeciv-server.png
+%{_ggz_datadir}/civserver.dsc
