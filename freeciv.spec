@@ -3,13 +3,9 @@
 %{?!_ggz_config:%define _ggz_config %{_bindir}/ggz-config}
 %{?!_ggz_datadir:%define _ggz_datadir %(%{_ggz_config} --datadir)} 
 
-%define	name	freeciv
-%define version	2.2.0
-%define release %mkrel 1
-
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		freeciv
+Version:	2.2.0
+Release:	%mkrel 2
 Summary:	CIVilization clone
 License:	GPLv2+
 Group:		Games/Strategy
