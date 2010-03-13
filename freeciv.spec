@@ -1,7 +1,7 @@
 # include fallback defs for _ggz_config, _ggz_datadir macros
 # feel free to drop when ggz-client-lib including these is deployed everywhere
-%{!?_ggz_config:%define _ggz_config %{_bindir}/ggz-config}
-%{!?_ggz_datadir:%define _ggz_datadir %(%{_ggz_config} --datadir >& /dev/null ||:)} 
+%{?!_ggz_config:%define _ggz_config %{_bindir}/ggz-config}
+%{?!_ggz_datadir:%define _ggz_datadir %(%{_ggz_config} --datadir)} 
 
 %define	name	freeciv
 %define version	2.2.0
