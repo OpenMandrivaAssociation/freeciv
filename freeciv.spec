@@ -120,40 +120,6 @@ rm -f %{buildroot}%{_mandir}/man6/*sdl*
 rm -f %{buildroot}%{_mandir}/man6/*win32*
 rm -f %{buildroot}%{_mandir}/man6/*xaw*
 
-
-%post client
-%{_ggz_config} --install --force --modfile=%{_ggz_datadir}/civclient.dsc || :
-%if %mdkversion < 200900
-%update_menus
-%endif
-
-%preun client
-if [ $1 -eq 0 ]; then
-	%{_ggz_config} --remove --modfile=%{_ggz_datadir}/civclient.dsc || :
-fi 
-
-
-%if %mdkversion < 200900
-%postun client
-%clean_menus
-%endif
-
-%post server
-%{_ggz_config} --install --force --modfile=%{_ggz_datadir}/civserver.dsc || :
-%if %mdkversion < 200900
-%update_menus
-%endif
-
-%preun server
-if [ $1 -eq 0 ]; then
-	%{_ggz_config} --remove --modfile=%{_ggz_datadir}/civserver.dsc || :
-fi
-
-%if %mdkversion < 200900
-%postun server
-%clean_menus
-%endif
-
 %clean
 rm -rf %{buildroot}
 
