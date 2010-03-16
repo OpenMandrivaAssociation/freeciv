@@ -1,8 +1,3 @@
-# include fallback defs for _ggz_config, _ggz_datadir macros
-# feel free to drop when ggz-client-lib including these is deployed everywhere
-%{?!_ggz_config:%define _ggz_config %{_bindir}/ggz-config}
-%{?!_ggz_datadir:%define _ggz_datadir %(%{_ggz_config} --datadir)} 
-
 Name:		freeciv
 Version:	2.2.0
 Release:	%mkrel 2
@@ -110,8 +105,9 @@ desktop-file-install --vendor="" \
 # omit ggz.modules, to register at install, not build, time.
 rm %{buildroot}%{_sysconfdir}/ggz.modules
 # include .dsc files
-install -p -D -m644 data/civclient.dsc %{buildroot}%{_ggz_datadir}/civclient.dsc
-install -p -D -m644 data/civclient.dsc %{buildroot}%{_ggz_datadir}/civserver.dsc 
+mkdir -p %{buildroot}%{_datadir}/ggz
+install -p -D -m644 data/civclient.dsc %{buildroot}%{_datadir}/ggz/civclient.dsc
+install -p -D -m644 data/civclient.dsc %{buildroot}%{_datadir}/ggz/civserver.dsc 
 
 #remove unneeded
 rm -f %{buildroot}%{_libdir}/*a
@@ -138,7 +134,7 @@ rm -rf %{buildroot}
 %{_datadir}/applications/freeciv.desktop
 %{_datadir}/pixmaps/freeciv-client.png
 %{_iconsdir}/hicolor/*/apps/freeciv-client.png
-%{_ggz_datadir}/civclient.dsc
+%{_datadir}/ggz/civclient.dsc
 
 %files server
 %defattr(-,root,root)
@@ -147,4 +143,4 @@ rm -rf %{buildroot}
 %{_mandir}/man6/freeciv-server.6*
 %{_datadir}/applications/freeciv-server.desktop
 %{_iconsdir}/hicolor/*/apps/freeciv-server.png
-%{_ggz_datadir}/civserver.dsc
+%{_datadir}/ggz/civserver.dsc
