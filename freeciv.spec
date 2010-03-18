@@ -1,6 +1,6 @@
 Name:		freeciv
 Version:	2.2.0
-Release:	%mkrel 2
+Release:	%mkrel 3
 Summary:	CIVilization clone
 License:	GPLv2+
 Group:		Games/Strategy
@@ -14,6 +14,8 @@ BuildRequires:	ncurses-devel
 BuildRequires:	readline-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	ggz-gtk-client-devel
+Requires(post): ggz-client-libs
+Requires(preun): ggz-client-libs
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
@@ -90,7 +92,6 @@ install -m 755 %{SOURCE1} %{buildroot}%{_gamesbindir}/freeciv-server
 mv %{buildroot}%{_gamesdatadir}/icons %{buildroot}%{_datadir}/icons
 
 # menu entry
-#perl -pi -e 's/\.png$//' %{buildroot}%{_datadir}/applications/*.desktop
 desktop-file-install --vendor="" \
 			--remove-category="Application" \
 			--remove-category="GNOME" \
@@ -119,11 +120,26 @@ rm -f %{buildroot}%{_mandir}/man6/*xaw*
 %clean
 rm -rf %{buildroot}
 
+%post client 	 
+%{_bindir}/ggz-config --install --force --modfile=%{_datadir}/ggz/civclient.dsc || :
+
+%preun client 	 
+if [ $1 -eq 0 ]; then 	 
+   %{_bindir}/ggz-config --remove --modfile=%{_datadir}/ggz/civclient.dsc || : 	 
+fi
+
+%post server 	 
+%{_bindir}/ggz-config --install --force --modfile=%{_datadir}/ggz/civserver.dsc || : 	 
+	  	 
+%preun server 	 
+if [ $1 -eq 0 ]; then 	 
+  %{_bindir}/ggz-config --remove --modfile=%{_datadir}/ggz/civserver.dsc || : 	 
+fi
+
 %files -f %{name}.lang data
 %defattr(-,root,root)
 %doc AUTHORS doc/BUGS doc/HOWTOPLAY NEWS doc/README doc/README.AI doc/README.graphics doc/README.rulesets doc/README.sound doc/HACKING
 %{_gamesdatadir}/%{name}
-#%config(noreplace) %{_sysconfdir}/ggz.modules
 
 %files client
 %defattr(-,root,root)
