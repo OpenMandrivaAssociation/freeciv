@@ -5,7 +5,7 @@ Summary:	CIVilization clone
 License:	GPLv2+
 Group:		Games/Strategy
 URL:		http://www.freeciv.org/
-Source0:	http://downloads.sourceforge.net/freeciv/Freeciv%20%2.2/%{version}/%{name}-%{version}.tar.bz2
+Source0:	http://downloads.sourceforge.net/freeciv/Freeciv%202.2/%{version}/%{name}-%{version}.tar.bz2
 Source1:	%{name}.server.wrapper
 Source2:	stdsounds2.tar.bz2
 BuildRequires:	SDL_mixer-devel
