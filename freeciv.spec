@@ -1,6 +1,6 @@
 Name:		freeciv
 Version:	2.2.3
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	CIVilization clone
 License:	GPLv2+
 Group:		Games/Strategy
