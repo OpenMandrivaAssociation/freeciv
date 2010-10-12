@@ -1,6 +1,6 @@
 Name:		freeciv
 Version:	2.2.3
-Release:	%mkrel 2
+Release:	%mkrel 3
 Summary:	CIVilization clone
 License:	GPLv2+
 Group:		Games/Strategy
@@ -48,6 +48,7 @@ Summary:        FREE CIVilization clone - client
 Provides:	%{name}
 Obsoletes:	%{name}
 Requires:	%{name}-data = %{version} %{name}-server = %{version}
+Obsoletes:	%{name}-client < %{version}-%{release}
 Requires(post):	ggz-client-libs
 Requires(preun): ggz-client-libs 
 
