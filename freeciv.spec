@@ -1,6 +1,6 @@
 Name:		freeciv
 Version:	2.2.5
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	CIVilization clone
 License:	GPLv2+
 Group:		Games/Strategy
@@ -14,6 +14,7 @@ BuildRequires:	ncurses-devel
 BuildRequires:	readline-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	ggz-gtk-client-devel
+BuildRequires:	libstdc++-static-devel
 Requires(post): ggz-client-libs
 Requires(preun): ggz-client-libs
 BuildRoot:	%{_tmppath}/%{name}-%{version}
