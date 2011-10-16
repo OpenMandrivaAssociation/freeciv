@@ -1,11 +1,11 @@
 Name:		freeciv
-Version:	2.2.5
-Release:	%mkrel 2
+Version:	2.3.0
+Release:	%mkrel 1
 Summary:	CIVilization clone
 License:	GPLv2+
 Group:		Games/Strategy
 URL:		http://www.freeciv.org/
-Source0:	http://downloads.sourceforge.net/freeciv/Freeciv%202.2/%{version}/%{name}-%{version}.tar.bz2
+Source0:	http://downloads.sourceforge.net/freeciv/Freeciv%202.3/%{version}/%{name}-%{version}.tar.bz2
 Source1:	%{name}.server.wrapper
 Source2:	stdsounds2.tar.bz2
 BuildRequires:	SDL_mixer-devel
@@ -147,7 +147,8 @@ fi
 %files client
 %defattr(-,root,root)
 %{_gamesbindir}/freeciv-gtk2
-%{_gamesbindir}/civmanual
+%{_gamesbindir}/freeciv-manual
+%{_gamesbindir}/freeciv-modpack
 %{_mandir}/man6/freeciv-client.6*
 %{_mandir}/man6/freeciv-gtk2.6*
 %{_datadir}/applications/freeciv.desktop
