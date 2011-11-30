@@ -5,9 +5,9 @@ Summary:	CIVilization clone
 License:	GPLv2+
 Group:		Games/Strategy
 URL:		http://www.freeciv.org/
-Source0:	http://downloads.sourceforge.net/freeciv/Freeciv%202.3/%{version}/%{name}-%{version}.tar.bz2
+Source0:	http://prdownloads.sourceforge.net/freeciv/%{name}-%{version}.tar.bz2
 Source1:	%{name}.server.wrapper
-Source2:	stdsounds2.tar.bz2
+Source2:	stdsounds3.tar.gz
 BuildRequires:	SDL_mixer-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	ncurses-devel
@@ -17,7 +17,6 @@ BuildRequires:	ggz-gtk-client-devel
 BuildRequires:	libstdc++-static-devel
 Requires(post): ggz-client-libs
 Requires(preun): ggz-client-libs
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 Freeciv is a multiplayer strategy game, released under the GNU General
@@ -85,7 +84,7 @@ export localedir=%{_datadir}/locale
 rm -rf %{buildroot}
 %makeinstall_std localedir=%{_datadir}/locale
 
-tar -jxf %{SOURCE2} -C %{buildroot}%{_gamesdatadir}/%{name}
+tar -xvf %{SOURCE2} -C %{buildroot}%{_gamesdatadir}/%{name}
 
 # wrapper
 mv %{buildroot}%{_gamesbindir}/freeciv-server %{buildroot}%{_gamesbindir}/civserver.real
@@ -119,9 +118,6 @@ rm -f %{buildroot}%{_mandir}/man6/*ftwl*
 rm -f %{buildroot}%{_mandir}/man6/*sdl*
 rm -f %{buildroot}%{_mandir}/man6/*win32*
 rm -f %{buildroot}%{_mandir}/man6/*xaw*
-
-%clean
-rm -rf %{buildroot}
 
 %post client 	 
 %{_bindir}/ggz-config --install --force --modfile=%{_datadir}/ggz/civclient.dsc || :
