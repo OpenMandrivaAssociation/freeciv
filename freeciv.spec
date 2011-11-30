@@ -1,6 +1,6 @@
 Name:		freeciv
-Version:	2.3.0
-Release:	%mkrel 1
+Version:	2.3.1
+Release:	1
 Summary:	CIVilization clone
 License:	GPLv2+
 Group:		Games/Strategy
@@ -81,7 +81,6 @@ export localedir=%{_datadir}/locale
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std localedir=%{_datadir}/locale
 
 tar -xvf %{SOURCE2} -C %{buildroot}%{_gamesdatadir}/%{name}
@@ -147,8 +146,11 @@ fi
 %{_gamesbindir}/freeciv-modpack
 %{_mandir}/man6/freeciv-client.6*
 %{_mandir}/man6/freeciv-gtk2.6*
+%{_mandir}/man6/freeciv-modpack*
 %{_datadir}/applications/freeciv.desktop
+%{_datadir}/applications/freeciv-modpack.desktop
 %{_datadir}/pixmaps/freeciv-client.png
+%{_iconsdir}/hicolor/*/apps/freeciv-modpack.png
 %{_iconsdir}/hicolor/*/apps/freeciv-client.png
 %{_datadir}/ggz/civclient.dsc
 
