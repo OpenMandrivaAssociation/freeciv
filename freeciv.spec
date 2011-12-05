@@ -1,6 +1,10 @@
 Name:		freeciv
 Version:	2.3.1
+%if %{mdvver} >= 201100
 Release:	1
+%else
+Release:	%mkrel 1
+%endif
 Summary:	CIVilization clone
 License:	GPLv2+
 Group:		Games/Strategy
@@ -31,7 +35,7 @@ you prefer classic Civilization(r) 2-d view, invoke the client with
 Group:		Games/Strategy
 Summary:	FREE CIVilization clone - data files
 Requires:	%{name}-server = %{version}
-BuildArch: noarch
+BuildArch:	noarch
 
 %description	data
 Freeciv is a multiplayer strategy game, released under the GNU General
@@ -52,19 +56,19 @@ Obsoletes:	%{name}-client < %{version}-%{release}
 Requires(post):	ggz-client-libs
 Requires(preun): ggz-client-libs 
 
-%description    client
+%description	client
 This is the graphical client for freeciv
 
-%package        server
-Group:          Games/Strategy
-Summary:        FREE CIVilization clone - server
+%package	server
+Group:		Games/Strategy
+Summary:	FREE CIVilization clone - server
 Provides:	%{name}
 Obsoletes:	%{name}
 Requires:	%{name}-data = %{version}
 Requires(post):	ggz-client-libs
 Requires(preun): ggz-client-libs 
 
-%description    server
+%description	server
 This is the server for freeciv.
 
 %prep
