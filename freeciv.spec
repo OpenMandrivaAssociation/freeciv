@@ -1,10 +1,6 @@
 Name:		freeciv
-Version:	2.3.1
-%if %{mdvver} >= 201100
-Release:	1
-%else
+Version:	2.3.2
 Release:	%mkrel 1
-%endif
 Summary:	CIVilization clone
 License:	GPLv2+
 Group:		Games/Strategy
@@ -19,7 +15,7 @@ BuildRequires:	readline-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	ggz-gtk-client-devel
 BuildRequires:	libstdc++-static-devel
-Requires(post): ggz-client-libs
+Requires(post):	ggz-client-libs
 Requires(preun): ggz-client-libs
 
 %description
@@ -46,15 +42,16 @@ Default configuration uses the Civilization II(r) style Isometric view. If
 you prefer classic Civilization(r) 2-d view, invoke the client with
 "civclient --tiles trident".
 
-%package        client
-Group:          Games/Strategy
-Summary:        FREE CIVilization clone - client
+%package	client
+Group:		Games/Strategy
+Summary:	FREE CIVilization clone - client
 Provides:	%{name}
 Obsoletes:	%{name}
-Requires:	%{name}-data = %{version} %{name}-server = %{version}
+Requires:	%{name}-data = %{version}
+Requires:	%{name}-server = %{version}
 Obsoletes:	%{name}-client < %{version}-%{release}
 Requires(post):	ggz-client-libs
-Requires(preun): ggz-client-libs 
+Requires(preun): ggz-client-libs
 
 %description	client
 This is the graphical client for freeciv
@@ -81,20 +78,21 @@ export localedir=%{_datadir}/locale
 %configure2_5x \
     --bindir=%{_gamesbindir} \
     --datadir=%{_gamesdatadir} \
-    --enable-client=gtk-2.0 
+    --enable-client=gtk-2.0
 %make
 
 %install
+%__rm -rf %{buildroot}
 %makeinstall_std localedir=%{_datadir}/locale
 
 tar -xvf %{SOURCE2} -C %{buildroot}%{_gamesdatadir}/%{name}
 
 # wrapper
-mv %{buildroot}%{_gamesbindir}/freeciv-server %{buildroot}%{_gamesbindir}/civserver.real
-install -m 755 %{SOURCE1} %{buildroot}%{_gamesbindir}/freeciv-server
+%__mv %{buildroot}%{_gamesbindir}/freeciv-server %{buildroot}%{_gamesbindir}/civserver.real
+%__install -m 755 %{SOURCE1} %{buildroot}%{_gamesbindir}/freeciv-server
 
 # fix icons locations
-mv %{buildroot}%{_gamesdatadir}/icons %{buildroot}%{_datadir}/icons
+%__mv %{buildroot}%{_gamesdatadir}/icons %{buildroot}%{_datadir}/icons
 
 # menu entry
 desktop-file-install --vendor="" \
@@ -109,42 +107,43 @@ desktop-file-install --vendor="" \
 %find_lang %{name}
 
 # omit ggz.modules, to register at install, not build, time.
-rm %{buildroot}%{_sysconfdir}/ggz.modules
+%__rm %{buildroot}%{_sysconfdir}/ggz.modules
 # include .dsc files
-mkdir -p %{buildroot}%{_datadir}/ggz
-install -p -D -m644 data/civclient.dsc %{buildroot}%{_datadir}/ggz/civclient.dsc
-install -p -D -m644 data/civclient.dsc %{buildroot}%{_datadir}/ggz/civserver.dsc 
+%__mkdir_p %{buildroot}%{_datadir}/ggz
+%__install -p -D -m644 data/civclient.dsc %{buildroot}%{_datadir}/ggz/civclient.dsc
+%__install -p -D -m644 data/civclient.dsc %{buildroot}%{_datadir}/ggz/civserver.dsc 
 
 #remove unneeded
-rm -f %{buildroot}%{_libdir}/*a
-rm -f %{buildroot}%{_mandir}/man6/*ftwl*
-rm -f %{buildroot}%{_mandir}/man6/*sdl*
-rm -f %{buildroot}%{_mandir}/man6/*win32*
-rm -f %{buildroot}%{_mandir}/man6/*xaw*
+%__rm -f %{buildroot}%{_libdir}/*a
+%__rm -f %{buildroot}%{_mandir}/man6/*ftwl*
+%__rm -f %{buildroot}%{_mandir}/man6/*sdl*
+%__rm -f %{buildroot}%{_mandir}/man6/*win32*
+%__rm -f %{buildroot}%{_mandir}/man6/*xaw*
 
-%post client 	 
+%clean
+%__rm -rf %{buildroot}
+
+%post client
 %{_bindir}/ggz-config --install --force --modfile=%{_datadir}/ggz/civclient.dsc || :
 
-%preun client 	 
-if [ $1 -eq 0 ]; then 	 
-   %{_bindir}/ggz-config --remove --modfile=%{_datadir}/ggz/civclient.dsc || : 	 
+%preun client
+if [ $1 -eq 0 ]; then
+   %{_bindir}/ggz-config --remove --modfile=%{_datadir}/ggz/civclient.dsc || :
 fi
 
-%post server 	 
-%{_bindir}/ggz-config --install --force --modfile=%{_datadir}/ggz/civserver.dsc || : 	 
-	  	 
-%preun server 	 
-if [ $1 -eq 0 ]; then 	 
-  %{_bindir}/ggz-config --remove --modfile=%{_datadir}/ggz/civserver.dsc || : 	 
+%post server
+%{_bindir}/ggz-config --install --force --modfile=%{_datadir}/ggz/civserver.dsc || :
+
+%preun server
+if [ $1 -eq 0 ]; then
+  %{_bindir}/ggz-config --remove --modfile=%{_datadir}/ggz/civserver.dsc || :
 fi
 
 %files -f %{name}.lang data
-%defattr(-,root,root)
 %doc AUTHORS doc/BUGS doc/HOWTOPLAY NEWS doc/README doc/README.AI doc/README.graphics doc/README.rulesets doc/README.sound doc/HACKING
 %{_gamesdatadir}/%{name}
 
 %files client
-%defattr(-,root,root)
 %{_gamesbindir}/freeciv-gtk2
 %{_gamesbindir}/freeciv-manual
 %{_gamesbindir}/freeciv-modpack
@@ -159,7 +158,6 @@ fi
 %{_datadir}/ggz/civclient.dsc
 
 %files server
-%defattr(-,root,root)
 %{_gamesbindir}/civserver.real
 %{_gamesbindir}/freeciv-server
 %{_mandir}/man6/freeciv-server.6*
