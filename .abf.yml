@@ -1,4 +1,3 @@
 sources:
-  "freeciv-2.3.2.tar.bz2:"	e6267b5e0483cf9c29d01793d2f9433e73d62191
-  "freeciv.server.wrapper:"	50ac8a9bd13ac7238ff0656535717f93e182b459
-  "stdsounds3.tar.gz:"	103d02a0702687fb038f5187a321f8074b4ebfb5
+  "freeciv-2.3.2.tar.bz2": e6267b5e0483cf9c29d01793d2f9433e73d62191
+  "stdsounds3.tar.gz": 103d02a0702687fb038f5187a321f8074b4ebfb5

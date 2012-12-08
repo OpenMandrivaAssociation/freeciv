@@ -1,0 +1,26 @@
+#!/bin/sh
+civdir=$HOME/.freeciv
+[ -d $civdir ] || mkdir $civdir
+
+# convert relative to absolute pathes
+for arg in "$@"; do
+	if [ -f "$arg" ]; then
+		if [[ "$arg" != /* ]]; then
+			dir=`dirname $arg`
+			file=`basename $arg`
+			cd $dir
+			arg=`pwd`/$file
+			cd -
+		fi
+	fi
+	if [ -n "$args" ]; then
+		args="$args $arg"
+	else
+		args=$arg
+	fi
+done
+
+# launch real game
+cd $civdir
+/usr/games/civserver.real $args
+cd -
