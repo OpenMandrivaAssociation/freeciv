@@ -1,11 +1,18 @@
+%define beta beta1
+
 Name:		freeciv
-Version:	2.3.2
-Release:	3
+Version:	2.4.0
+%if "%beta" != ""
+Release:	0.%beta.1
+Source0:	http://download.gna.org/freeciv/beta/freeciv-%version-%beta.tar.bz2
+%else
+Release:	1
+Source0:	http://download.gna.org/freeciv/stable/freeciv-%version.tar.gz
+%endif
 Summary:	CIVilization clone
 License:	GPLv2+
 Group:		Games/Strategy
 URL:		http://www.freeciv.org/
-Source0:	http://prdownloads.sourceforge.net/freeciv/%{name}-%{version}.tar.bz2
 Source1:	%{name}.server.wrapper
 Source2:	stdsounds3.tar.gz
 BuildRequires:	pkgconfig(SDL_mixer)
@@ -67,7 +74,11 @@ Requires(preun): ggz-client-libs
 This is the server for freeciv.
 
 %prep
+%if "%beta" != ""
+%setup -q -n %name-%version-%beta
+%else
 %setup -q
+%endif
 
 %build
 #locales are not in %{_gamesdatadir}
@@ -112,8 +123,12 @@ desktop-file-install --vendor="" \
 %__install -p -D -m644 data/civclient.dsc %{buildroot}%{_datadir}/ggz/civserver.dsc 
 
 #remove unneeded
+# The Qt one will be useful as soon as the Qt client becomes more than a
+# stub -- probably by 2.5.x
 %__rm -f %{buildroot}%{_libdir}/*a
 %__rm -f %{buildroot}%{_mandir}/man6/*ftwl*
+%__rm -f %{buildroot}%{_mandir}/man6/*gtk3*
+%__rm -f %{buildroot}%{_mandir}/man6/*qt*
 %__rm -f %{buildroot}%{_mandir}/man6/*sdl*
 %__rm -f %{buildroot}%{_mandir}/man6/*win32*
 %__rm -f %{buildroot}%{_mandir}/man6/*xaw*
@@ -162,6 +177,7 @@ fi
 %{_datadir}/applications/freeciv-server.desktop
 %{_iconsdir}/hicolor/*/apps/freeciv-server.png
 %{_datadir}/ggz/civserver.dsc
+%_sysconfdir/freeciv
 
 
 %changelog
