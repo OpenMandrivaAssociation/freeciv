@@ -18,6 +18,7 @@ Source2:	stdsounds3.tar.gz
 BuildRequires:	pkgconfig(SDL_mixer)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(ncurses)
+BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	readline-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	ggz-gtk-client-devel
