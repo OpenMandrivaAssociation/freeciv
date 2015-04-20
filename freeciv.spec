@@ -1,4 +1,4 @@
-%define beta beta2
+%define beta %{nil}
 
 Name:		freeciv
 Version:	2.5.0
@@ -6,15 +6,15 @@ Version:	2.5.0
 Release:	0.%beta.1
 Source0:	http://download.gna.org/freeciv/beta/freeciv-%version-%beta.tar.bz2
 %else
-Release:	2
-Source0:	http://download.gna.org/freeciv/stable/freeciv-%version.tar.gz
+Release:	1
+Source0:	http://kent.dl.sourceforge.net/project/freeciv/Freeciv%20%(echo %{version}|cut -d. -f1-2)/%{version}/freeciv-%{version}.tar.bz2
 %endif
 Summary:	CIVilization clone
 License:	GPLv2+
 Group:		Games/Strategy
 URL:		http://www.freeciv.org/
 Source1:	%{name}.server.wrapper
-Source2:	stdsounds3.tar.gz
+Source2:	http://download.gna.org/freeciv/contrib/audio/soundsets/stdsounds3.tar.gz
 BuildRequires:	pkgconfig(SDL_mixer)
 BuildRequires:	pkgconfig(SDL_gfx)
 BuildRequires:	pkgconfig(ncurses)
