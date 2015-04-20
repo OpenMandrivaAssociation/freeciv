@@ -17,6 +17,9 @@ Source1:	%{name}.server.wrapper
 Source2:	http://download.gna.org/freeciv/contrib/audio/soundsets/stdsounds3.tar.gz
 BuildRequires:	pkgconfig(SDL_mixer)
 BuildRequires:	pkgconfig(SDL_gfx)
+BuildRequires:	pkgconfig(SDL_image)
+BuildRequires:	pkgconfig(SDL_ttf)
+BuildRequires:	pkgconfig(sdl)
 BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(gtk+-2.0)
