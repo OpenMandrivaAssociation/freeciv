@@ -1,7 +1,7 @@
 %define beta %{nil}
 
 Name:		freeciv
-Version:	2.5.1
+Version:	2.5.4
 %if "%beta" != ""
 Release:	0.%beta.1
 Source0:	http://download.gna.org/freeciv/beta/freeciv-%version-%beta.tar.bz2
