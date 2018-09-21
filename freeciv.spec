@@ -120,7 +120,7 @@ export PATH=%{_libdir}/qt5/bin:$PATH
 %configure \
     --bindir=%{_gamesbindir} \
     --datadir=%{_gamesdatadir} \
-    --enable-client=sdl,qt \
+    --enable-client=sdl2,qt \
     --with-qt5-includes=%{_includedir}/qt5
 %make
 
