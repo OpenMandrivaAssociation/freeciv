@@ -1,13 +1,14 @@
 %define beta %{nil}
 
 Name:		freeciv
-Version:	2.5.6
+Version:	2.6.0
 %if "%beta" != ""
 Release:	0.%beta.1
 Source0:	http://download.gna.org/freeciv/beta/freeciv-%version-%beta.tar.bz2
 %else
 Release:	1
-Source0:	http://download.gna.org/freeciv/stable/%{name}-%{version}.tar.bz2
+Source0:	http://files.freeciv.org/stable/%{name}-%{version}.tar.bz2
+#Source0:	http://prdownloads.sourceforge.net/freeciv/%{name}-%{version}.tar.bz2
 %endif
 Summary:	CIVilization clone
 License:	GPLv2+
