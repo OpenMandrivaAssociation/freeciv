@@ -1,3 +1,5 @@
+removed_sources:
+  freeciv-2.5.10.tar.bz2: b5c3638da08d236497223a43b7bb4c386c56ef46
 sources:
+  freeciv-2.6.0.tar.bz2: 19b5181e3e9e40b31332c79a2226fbcc3706a9c2
   stdsounds3.tar.gz: 103d02a0702687fb038f5187a321f8074b4ebfb5
-  freeciv-2.5.6.tar.bz2: 9b863fcf7da7b78a998c1f6b88815266825e3550

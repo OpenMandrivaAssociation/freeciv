@@ -1,13 +1,14 @@
 %define beta %{nil}
+%define _disable_ld_no_undefined 1
 
 Name:		freeciv
-Version:	2.5.6
+Version:	2.6.0
 %if "%beta" != ""
 Release:	0.%beta.1
 Source0:	http://download.gna.org/freeciv/beta/freeciv-%version-%beta.tar.bz2
 %else
 Release:	1
-Source0:	http://download.gna.org/freeciv/stable/%{name}-%{version}.tar.bz2
+Source0:	http://files.freeciv.org/stable/freeciv-%{version}.tar.bz2
 %endif
 Summary:	CIVilization clone
 License:	GPLv2+
@@ -15,14 +16,14 @@ Group:		Games/Strategy
 URL:		http://www.freeciv.org/
 Source1:	%{name}.server.wrapper
 Source2:	http://download.gna.org/freeciv/contrib/audio/soundsets/stdsounds3.tar.gz
-BuildRequires:	pkgconfig(SDL_mixer)
-BuildRequires:	pkgconfig(SDL_gfx)
-BuildRequires:	pkgconfig(SDL_image)
-BuildRequires:	pkgconfig(SDL_ttf)
-BuildRequires:	pkgconfig(sdl)
+BuildRequires:	pkgconfig(SDL2_mixer)
+BuildRequires:	pkgconfig(SDL2_gfx)
+BuildRequires:	pkgconfig(SDL2_image)
+BuildRequires:	pkgconfig(SDL2_ttf)
+BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	pkgconfig(libcurl)
-BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Gui)
 BuildRequires:	pkgconfig(Qt5Widgets)
@@ -70,6 +71,7 @@ This is the graphical client for freeciv
 %package	client-qt
 Group:		Games/Strategy
 Summary:	FREE CIVilization clone - Qt client
+Requires:	%{name}-client-common = %{EVRD}
 Provides:	%{name}-client = %{EVRD}
 
 %description	client-qt
@@ -78,6 +80,7 @@ FREE CIVilization clone - Qt client
 %package	client-sdl
 Group:		Games/Strategy
 Summary:	FREE CIVilization clone - SDL client
+Requires:       %{name}-client-common = %{EVRD}
 Provides:	%{name}-client = %{EVRD}
 
 %description	client-sdl
@@ -86,6 +89,7 @@ FREE CIVilization clone - SDL client
 %package	client-gtk
 Group:		Games/Strategy
 Summary:	FREE CIVilization clone - gtk client
+Requires:       %{name}-client-common = %{EVRD}
 Provides:	%{name}-client = %{EVRD}
 
 %description	client-gtk
@@ -146,6 +150,7 @@ desktop-file-install --vendor="" \
 
 %find_lang %{name}
 %find_lang freeciv-nations
+%find_lang freeciv-ruledit
 
 #remove unneeded
 # The Qt one will be useful as soon as the Qt client becomes more than a
@@ -157,12 +162,15 @@ desktop-file-install --vendor="" \
 %__rm -f %{buildroot}%{_mandir}/man6/*win32*
 %__rm -f %{buildroot}%{_mandir}/man6/*xaw*
 
-%files -f %{name}.lang,freeciv-nations.lang data
+%files -f %{name}.lang,freeciv-nations.lang,freeciv-ruledit.lang data
 %doc AUTHORS doc/BUGS doc/HOWTOPLAY NEWS doc/README doc/README.AI doc/README.graphics doc/README.rulesets doc/README.sound doc/HACKING
 %{_gamesdatadir}/%{name}
 
 %files client-common
 %{_gamesbindir}/freeciv-manual
+%{_gamesbindir}/freeciv-ruledit
+%{_datadir}/applications/freeciv-ruledit.desktop
+%{_mandir}/man6/freeciv-ruledit.6*
 %{_mandir}/man6/freeciv-client.6*
 %{_mandir}/man6/freeciv-mp-cli.6*
 %{_mandir}/man6/freeciv-modpack*
@@ -174,8 +182,8 @@ desktop-file-install --vendor="" \
 %doc %{_docdir}/%{name}
 
 %files client-sdl
-%{_gamesbindir}/freeciv-sdl
-%{_datadir}/applications/freeciv-sdl.desktop
+%{_gamesbindir}/freeciv-sdl2
+%{_datadir}/applications/freeciv-sdl2.desktop
 %{_mandir}/man6/freeciv-sdl*
 
 %files client-qt
@@ -185,9 +193,9 @@ desktop-file-install --vendor="" \
 %{_mandir}/man6/freeciv-qt.6.xz
 
 %files client-gtk
-%{_gamesbindir}/freeciv-mp-gtk2
+%{_gamesbindir}/freeciv-mp-gtk3
 %{_mandir}/man6/freeciv-mp-gtk2.6*
-%{_datadir}/applications/freeciv-mp-gtk2.desktop
+%{_datadir}/applications/freeciv-mp-gtk3.desktop
 
 %files server
 %{_gamesbindir}/civserver.real
