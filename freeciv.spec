@@ -162,7 +162,7 @@ desktop-file-install --vendor="" \
 %__rm -f %{buildroot}%{_mandir}/man6/*win32*
 %__rm -f %{buildroot}%{_mandir}/man6/*xaw*
 
-%files -f %{name}.lang,freeciv-nations.lang,freeciv-ruledit.lang data
+%files -f %{name}.lang -f freeciv-nations.lang -f freeciv-ruledit.lang data
 %doc AUTHORS doc/BUGS doc/HOWTOPLAY NEWS doc/README doc/README.AI doc/README.graphics doc/README.rulesets doc/README.sound doc/HACKING
 %{_gamesdatadir}/%{name}
 
