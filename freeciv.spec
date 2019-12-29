@@ -2,9 +2,9 @@
 %define _disable_ld_no_undefined 1
 
 Name:		freeciv
-Version:	2.6.0
+Version:	2.6.1
 %if "%beta" != ""
-Release:	0.%beta.1
+Release:	1
 Source0:	http://download.gna.org/freeciv/beta/freeciv-%version-%beta.tar.bz2
 %else
 Release:	1
@@ -15,7 +15,7 @@ License:	GPLv2+
 Group:		Games/Strategy
 URL:		http://www.freeciv.org/
 Source1:	%{name}.server.wrapper
-Source2:	http://download.gna.org/freeciv/contrib/audio/soundsets/stdsounds3.tar.gz
+Source2:	http://files.freeciv.org/contrib/audio/stdsounds3.tar.gz
 BuildRequires:	pkgconfig(SDL2_mixer)
 BuildRequires:	pkgconfig(SDL2_gfx)
 BuildRequires:	pkgconfig(SDL2_image)
