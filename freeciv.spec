@@ -189,8 +189,8 @@ desktop-file-install --vendor="" \
 %files client-qt
 %{_gamesbindir}/freeciv-qt
 %{_datadir}/applications/freeciv-qt.desktop
-%{_mandir}/man6/freeciv-mp-qt.6.xz
-%{_mandir}/man6/freeciv-qt.6.xz
+%{_mandir}/man6/freeciv-mp-qt.6.*
+%{_mandir}/man6/freeciv-qt.6.*
 
 %files client-gtk
 %{_gamesbindir}/freeciv-mp-gtk3
