@@ -2,7 +2,7 @@
 %define _disable_ld_no_undefined 1
 
 Name:		freeciv
-Version:	2.6.1
+Version:	2.6.2.1
 %if "%beta" != ""
 Release:	1
 Source0:	http://download.gna.org/freeciv/beta/freeciv-%version-%beta.tar.bz2
@@ -122,11 +122,11 @@ export PATH=%{_libdir}/qt5/bin:$PATH
     --datadir=%{_gamesdatadir} \
     --enable-client=sdl2,qt \
     --with-qt5-includes=%{_includedir}/qt5
-%make
+%make_build
 
 %install
 %__rm -rf %{buildroot}
-%makeinstall_std localedir=%{_datadir}/locale
+%make_install localedir=%{_datadir}/locale
 
 tar -xvf %{SOURCE2} -C %{buildroot}%{_gamesdatadir}/%{name}
 
