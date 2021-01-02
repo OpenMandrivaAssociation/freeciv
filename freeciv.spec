@@ -2,7 +2,7 @@
 %define _disable_ld_no_undefined 1
 
 Name:		freeciv
-Version:	2.6.2.1
+Version:	2.6.3
 %if "%beta" != ""
 Release:	1
 Source0:	http://download.gna.org/freeciv/beta/freeciv-%version-%beta.tar.bz2
@@ -169,7 +169,7 @@ desktop-file-install --vendor="" \
 %files client-common
 %{_gamesbindir}/freeciv-manual
 %{_gamesbindir}/freeciv-ruledit
-%{_datadir}/applications/freeciv-ruledit.desktop
+%{_datadir}/applications/org.freeciv.ruledit.desktop
 %{_mandir}/man6/freeciv-ruledit.6*
 %{_mandir}/man6/freeciv-client.6*
 %{_mandir}/man6/freeciv-mp-cli.6*
@@ -183,24 +183,24 @@ desktop-file-install --vendor="" \
 
 %files client-sdl
 %{_gamesbindir}/freeciv-sdl2
-%{_datadir}/applications/freeciv-sdl2.desktop
+%{_datadir}/applications/org.freeciv.sdl2.desktop
 %{_mandir}/man6/freeciv-sdl*
 
 %files client-qt
 %{_gamesbindir}/freeciv-qt
-%{_datadir}/applications/freeciv-qt.desktop
+%{_datadir}/applications/org.freeciv.qt.desktop
 %{_mandir}/man6/freeciv-mp-qt.6.*
 %{_mandir}/man6/freeciv-qt.6.*
 
 %files client-gtk
 %{_gamesbindir}/freeciv-mp-gtk3
 %{_mandir}/man6/freeciv-mp-gtk2.6*
-%{_datadir}/applications/freeciv-mp-gtk3.desktop
+%{_datadir}/applications/org.freeciv.mp.gtk3.desktop
 
 %files server
 %{_gamesbindir}/civserver.real
 %{_gamesbindir}/freeciv-server
 %{_mandir}/man6/freeciv-server.6*
-%{_datadir}/applications/freeciv-server.desktop
+%{_datadir}/applications/org.freeciv.server.desktop
 %{_iconsdir}/hicolor/*/apps/freeciv-server.png
 %_sysconfdir/freeciv
