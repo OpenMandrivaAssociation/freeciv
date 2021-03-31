@@ -1,11 +1,11 @@
-%define beta %{nil}
+%define beta beta1
 %define _disable_ld_no_undefined 1
 
 Name:		freeciv
-Version:	2.6.3
+Version:	3.0.0
 %if "%beta" != ""
 Release:	1
-Source0:	http://download.gna.org/freeciv/beta/freeciv-%version-%beta.tar.bz2
+Source0:	http://files.freeciv.org/beta/freeciv-%{version}-%{beta}.tar.xz
 %else
 Release:	1
 Source0:	http://files.freeciv.org/stable/freeciv-%{version}.tar.bz2
@@ -148,7 +148,7 @@ desktop-file-install --vendor="" \
 			--dir %{buildroot}%{_datadir}/applications \
             %{buildroot}%{_datadir}/applications/*.desktop
 
-%find_lang %{name}
+%find_lang %{name}-core
 %find_lang freeciv-nations
 %find_lang freeciv-ruledit
 
@@ -162,19 +162,21 @@ desktop-file-install --vendor="" \
 %__rm -f %{buildroot}%{_mandir}/man6/*win32*
 %__rm -f %{buildroot}%{_mandir}/man6/*xaw*
 
-%files -f %{name}.lang -f freeciv-nations.lang -f freeciv-ruledit.lang data
+%files -f %{name}-core.lang -f freeciv-nations.lang -f freeciv-ruledit.lang data
 %doc AUTHORS doc/BUGS doc/HOWTOPLAY NEWS doc/README doc/README.AI doc/README.graphics doc/README.rulesets doc/README.sound doc/HACKING
 %{_gamesdatadir}/%{name}
 
 %files client-common
 %{_gamesbindir}/freeciv-manual
 %{_gamesbindir}/freeciv-ruledit
+%{_gamesbindir}/freeciv-ruleup
 %{_datadir}/applications/org.freeciv.ruledit.desktop
 %{_mandir}/man6/freeciv-ruledit.6*
 %{_mandir}/man6/freeciv-client.6*
 %{_mandir}/man6/freeciv-mp-cli.6*
 %{_mandir}/man6/freeciv-modpack*
 %{_mandir}/man6/freeciv-manual*
+%{_mandir}/man6/freeciv-ruleup.6*
 %{_datadir}/appdata/*.xml
 %{_datadir}/pixmaps/freeciv-client.png
 %{_iconsdir}/hicolor/*/apps/freeciv-modpack.png
