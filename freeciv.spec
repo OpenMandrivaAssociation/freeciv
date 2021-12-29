@@ -171,6 +171,7 @@ desktop-file-install --vendor="" \
 %{_gamesbindir}/freeciv-ruledit
 %{_gamesbindir}/freeciv-ruleup
 %{_datadir}/applications/org.freeciv.ruledit.desktop
+%{_mandir}/man6/freeciv.6*
 %{_mandir}/man6/freeciv-ruledit.6*
 %{_mandir}/man6/freeciv-client.6*
 %{_mandir}/man6/freeciv-mp-cli.6*
