@@ -1,4 +1,4 @@
-%define beta beta3
+#define beta beta3
 %define _disable_ld_no_undefined 1
 
 Name:		freeciv
@@ -8,7 +8,7 @@ Release:	1
 Source0:	http://files.freeciv.org/beta/freeciv-%{version}-%{beta}.tar.xz
 %else
 Release:	1
-Source0:	http://files.freeciv.org/stable/freeciv-%{version}.tar.bz2
+Source0:	http://files.freeciv.org/stable/freeciv-%{version}.tar.xz
 %endif
 Summary:	CIVilization clone
 License:	GPLv2+
