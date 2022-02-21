@@ -1,12 +1,7 @@
-#define beta %nil
 %define _disable_ld_no_undefined 1
 
 Name:		freeciv
 Version:	3.0.0
-%if "%beta" != ""
-Release:	1
-Source0:	http://files.freeciv.org/beta/freeciv-%{version}-%{beta}.tar.xz
-%else
 Release:	1
 Source0:	http://files.freeciv.org/stable/freeciv-%{version}.tar.xz
 %endif
@@ -105,11 +100,7 @@ Requires:	%{name}-data = %{version}
 This is the server for freeciv.
 
 %prep
-%if "%beta" != ""
-%setup -q -n %name-%version-%beta
-%else
 %setup -q
-%endif
 
 %build
 #locales are not in %{_gamesdatadir}
