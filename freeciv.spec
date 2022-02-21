@@ -172,6 +172,7 @@ desktop-file-install --vendor="" \
 %{_datadir}/pixmaps/freeciv-client.png
 %{_iconsdir}/hicolor/*/apps/freeciv-modpack.png
 %{_iconsdir}/hicolor/*/apps/freeciv-client.png
+%{_iconsdir}/hicolor/*x*/apps/freeciv-ruledit.png
 %doc %{_docdir}/%{name}
 
 %files client-sdl
