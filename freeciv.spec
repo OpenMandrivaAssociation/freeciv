@@ -4,7 +4,6 @@ Name:		freeciv
 Version:	3.0.0
 Release:	1
 Source0:	http://files.freeciv.org/stable/freeciv-%{version}.tar.xz
-%endif
 Summary:	CIVilization clone
 License:	GPLv2+
 Group:		Games/Strategy
