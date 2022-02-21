@@ -1,4 +1,4 @@
-#define beta beta3
+#define beta %nil
 %define _disable_ld_no_undefined 1
 
 Name:		freeciv
