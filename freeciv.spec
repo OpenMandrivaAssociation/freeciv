@@ -168,8 +168,10 @@ desktop-file-install --vendor="" \
 %{_mandir}/man6/freeciv-modpack*
 %{_mandir}/man6/freeciv-manual*
 %{_mandir}/man6/freeciv-ruleup.6*
-#{_datadir}/appdata/*.xml
+%{_datadir}/metainfo/freeciv-*
 %{_datadir}/pixmaps/freeciv-client.png
+%{_datadir}/pixmaps/freeciv-modpack.png
+%{_datadir}/pixmaps/freeciv-ruledit.png
 %{_iconsdir}/hicolor/*/apps/freeciv-modpack.png
 %{_iconsdir}/hicolor/*/apps/freeciv-client.png
 %{_iconsdir}/hicolor/*x*/apps/freeciv-ruledit.png
