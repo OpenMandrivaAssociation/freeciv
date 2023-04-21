@@ -1,7 +1,7 @@
 %define _disable_ld_no_undefined 1
 
 Name:		freeciv
-Version:	3.0.5
+Version:	3.0.7
 Release:	1
 Source0:	http://files.freeciv.org/stable/freeciv-%{version}.tar.xz
 Summary:	CIVilization clone
@@ -191,6 +191,7 @@ desktop-file-install --vendor="" \
 %files client-gtk
 %{_gamesbindir}/freeciv-mp-gtk3
 %{_mandir}/man6/freeciv-mp-gtk2.6*
+%{_mandir}/man6/freeciv-mp-gtk4.6.zst
 %{_datadir}/applications/org.freeciv.mp.gtk3.desktop
 
 %files server
