@@ -108,7 +108,7 @@ This is the server for freeciv.
 %meson \
 	-Dclients=sdl2,gtk3.22,gtk4,qt \
 	-Dfcmp=gtk4 \
- 	-Daudio-true \
+ 	-Daudio=true \
   	-Dqtver=qt6
 %meson_build
 
