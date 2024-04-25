@@ -120,7 +120,7 @@ This is the server for freeciv.
 %install
 %meson_install
 
-tar -xvf %{SOURCE2} -C %{buildroot}%{_gamesdatadir}/%{name}
+#tar -xvf %{SOURCE2} -C %{buildroot}%{_gamesdatadir}/%{name}
 
 # wrapper
 %__mv %{buildroot}%{_gamesbindir}/freeciv-server %{buildroot}%{_gamesbindir}/civserver.real
