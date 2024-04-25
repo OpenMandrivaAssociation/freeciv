@@ -123,8 +123,8 @@ This is the server for freeciv.
 #tar -xvf %{SOURCE2} -C %{buildroot}%{_gamesdatadir}/%{name}
 
 # wrapper
-%__mv %{buildroot}%{_gamesbindir}/freeciv-server %{buildroot}%{_gamesbindir}/civserver.real
-%__install -m 755 %{SOURCE1} %{buildroot}%{_gamesbindir}/freeciv-server
+#__mv %{buildroot}%{_gamesbindir}/freeciv-server %{buildroot}%{_gamesbindir}/civserver.real
+#__install -m 755 %{SOURCE1} %{buildroot}%{_gamesbindir}/freeciv-server
 
 # fix icons locations
 %__mv %{buildroot}%{_gamesdatadir}/icons %{buildroot}%{_datadir}/icons
