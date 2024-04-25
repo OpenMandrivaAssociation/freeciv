@@ -1,15 +1,15 @@
 %define _disable_ld_no_undefined 1
 
 Name:		freeciv
-Version:	3.0.10
+Version:	3.1.0
 Release:	1
 Source0:	http://files.freeciv.org/stable/freeciv-%{version}.tar.xz
 Summary:	CIVilization clone
 License:	GPLv2+
 Group:		Games/Strategy
-URL:		http://www.freeciv.org/
+URL:		https://www.freeciv.org/
 Source1:	%{name}.server.wrapper
-Source2:	http://files.freeciv.org/contrib/audio/stdsounds3.tar.gz
+Source2:	https://files.freeciv.org/contrib/audio/stdsounds3.tar.gz
 BuildRequires:	pkgconfig(SDL2_mixer)
 BuildRequires:	pkgconfig(SDL2_gfx)
 BuildRequires:	pkgconfig(SDL2_image)
