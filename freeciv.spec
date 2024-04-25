@@ -25,6 +25,7 @@ BuildRequires:	pkgconfig(gtk4)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	cmake(Qt6Core)
 BuildRequires:	cmake(Qt6Gui)
+BuildRequires:	cmake(Qt6Linguist)
 BuildRequires:	cmake(Qt6Widgets)
 BuildRequires:	readline-devel
 BuildRequires:	desktop-file-utils
