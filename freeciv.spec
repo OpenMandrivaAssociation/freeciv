@@ -10,6 +10,7 @@ Group:		Games/Strategy
 URL:		https://www.freeciv.org/
 Source1:	%{name}.server.wrapper
 Source2:	https://files.freeciv.org/contrib/audio/stdsounds3.tar.gz
+BuildRequires:	meson
 BuildRequires:	pkgconfig(SDL2_mixer)
 BuildRequires:	pkgconfig(SDL2_gfx)
 BuildRequires:	pkgconfig(SDL2_image)
@@ -20,9 +21,9 @@ BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(icu-uc)
 BuildRequires:	pkgconfig(gtk+-3.0)
-BuildRequires:	pkgconfig(Qt5Core)
-BuildRequires:	pkgconfig(Qt5Gui)
-BuildRequires:	pkgconfig(Qt5Widgets)
+BuildRequires:	cmake(Qt6Core)
+BuildRequires:	cmake(Qt6Gui)
+BuildRequires:	cmake(Qt6Widgets)
 BuildRequires:	readline-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	libstdc++-static-devel
@@ -104,21 +105,15 @@ This is the server for freeciv.
 %setup -q
 
 %build
-#locales are not in %{_gamesdatadir}
-export localedir=%{_datadir}/locale
-
-export CXXFLAGS="%{optflags} -std=gnu++14"
-export PATH=%{_libdir}/qt5/bin:$PATH
-%configure \
-    --bindir=%{_gamesbindir} \
-    --datadir=%{_gamesdatadir} \
-    --enable-client=sdl2,qt \
-    --with-qt5-includes=%{_includedir}/qt5
-%make_build
+%meson \
+	-Dclients=sdl2,gtk3.22,gtk4,qt \
+	-Dfcmp=gtk4 \
+ 	-Daudio-true \
+  	-Dqtver=qt6
+%meson_build
 
 %install
-%__rm -rf %{buildroot}
-%make_install localedir=%{_datadir}/locale
+%meson_install
 
 tar -xvf %{SOURCE2} -C %{buildroot}%{_gamesdatadir}/%{name}
 
