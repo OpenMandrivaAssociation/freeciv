@@ -12,6 +12,7 @@ Source1:	%{name}.server.wrapper
 Source2:	https://files.freeciv.org/contrib/audio/stdsounds3.tar.gz
 BuildRequires:	gettext
 BuildRequires:	meson
+BuildRequires:	locales-extra-charsets
 BuildRequires:	pkgconfig(SDL2_mixer)
 BuildRequires:	pkgconfig(SDL2_gfx)
 BuildRequires:	pkgconfig(SDL2_image)
