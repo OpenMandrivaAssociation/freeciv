@@ -10,6 +10,7 @@ Group:		Games/Strategy
 URL:		https://www.freeciv.org/
 Source1:	%{name}.server.wrapper
 Source2:	https://files.freeciv.org/contrib/audio/stdsounds3.tar.gz
+BuildRequires:	gettext
 BuildRequires:	meson
 BuildRequires:	pkgconfig(SDL2_mixer)
 BuildRequires:	pkgconfig(SDL2_gfx)
@@ -20,6 +21,7 @@ BuildRequires:	pkgconfig(sqlite3)
 BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(icu-uc)
+BuildRequires:	pkgconfig(gtk4)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	cmake(Qt6Core)
 BuildRequires:	cmake(Qt6Gui)
