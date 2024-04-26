@@ -156,7 +156,7 @@ desktop-file-install --vendor="" \
 
 %files -f %{name}-core.lang -f freeciv-nations.lang -f freeciv-ruledit.lang data
 %doc AUTHORS doc/BUGS doc/HOWTOPLAY NEWS doc/README doc/README.AI doc/README.graphics doc/README.rulesets doc/README.sound doc/HACKING
-%{_gamesdatadir}/%{name}
+#{_gamesdatadir}/%{name}
 
 %files client-common
 %{_gamesbindir}/freeciv-manual
