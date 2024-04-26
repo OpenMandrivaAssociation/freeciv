@@ -180,9 +180,9 @@ desktop-file-install --vendor="" \
 %doc %{_docdir}/%{name}
 
 %files client-sdl
-%{_gamesbindir}/freeciv-sdl2
-%{_datadir}/applications/org.freeciv.sdl2.desktop
-%{_mandir}/man6/freeciv-sdl*
+#{_gamesbindir}/freeciv-sdl2
+#{_datadir}/applications/org.freeciv.sdl2.desktop
+#{_mandir}/man6/freeciv-sdl*
 
 %files client-qt
 %{_gamesbindir}/freeciv-qt
