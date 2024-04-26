@@ -191,15 +191,15 @@ desktop-file-install --vendor="" \
 #{_mandir}/man6/freeciv-qt.6.*
 
 %files client-gtk
-%{_gamesbindir}/freeciv-mp-gtk3
-%{_mandir}/man6/freeciv-mp-gtk2.6*
-%{_mandir}/man6/freeciv-mp-gtk4.6.zst
-%{_datadir}/applications/org.freeciv.mp.gtk3.desktop
+#{_gamesbindir}/freeciv-mp-gtk3
+#{_mandir}/man6/freeciv-mp-gtk2.6*
+#{_mandir}/man6/freeciv-mp-gtk4.6.zst
+#{_datadir}/applications/org.freeciv.mp.gtk3.desktop
 
 %files server
-%{_gamesbindir}/civserver.real
-%{_gamesbindir}/freeciv-server
-%{_mandir}/man6/freeciv-server.6*
-%{_datadir}/applications/org.freeciv.server.desktop
-%{_iconsdir}/hicolor/*/apps/freeciv-server.png
-%_sysconfdir/freeciv
+#{_gamesbindir}/civserver.real
+#{_gamesbindir}/freeciv-server
+#{_mandir}/man6/freeciv-server.6*
+#{_datadir}/applications/org.freeciv.server.desktop
+#{_iconsdir}/hicolor/*/apps/freeciv-server.png
+#_sysconfdir/freeciv
