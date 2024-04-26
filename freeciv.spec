@@ -127,7 +127,7 @@ This is the server for freeciv.
 #__install -m 755 %{SOURCE1} %{buildroot}%{_gamesbindir}/freeciv-server
 
 # fix icons locations
-%__mv %{buildroot}%{_gamesdatadir}/icons %{buildroot}%{_datadir}/icons
+#__mv %{buildroot}%{_gamesdatadir}/icons %{buildroot}%{_datadir}/icons
 
 # menu entry
 desktop-file-install --vendor="" \
