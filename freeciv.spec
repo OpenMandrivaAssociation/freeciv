@@ -159,21 +159,21 @@ desktop-file-install --vendor="" \
 #{_gamesdatadir}/%{name}
 
 %files client-common
-%{_gamesbindir}/freeciv-manual
-%{_gamesbindir}/freeciv-ruledit
-%{_gamesbindir}/freeciv-ruleup
-%{_datadir}/applications/org.freeciv.ruledit.desktop
-%{_mandir}/man6/freeciv.6*
-%{_mandir}/man6/freeciv-ruledit.6*
-%{_mandir}/man6/freeciv-client.6*
-%{_mandir}/man6/freeciv-mp-cli.6*
-%{_mandir}/man6/freeciv-modpack*
-%{_mandir}/man6/freeciv-manual*
-%{_mandir}/man6/freeciv-ruleup.6*
+#{_gamesbindir}/freeciv-manual
+#{_gamesbindir}/freeciv-ruledit
+#{_gamesbindir}/freeciv-ruleup
+#{_datadir}/applications/org.freeciv.ruledit.desktop
+#{_mandir}/man6/freeciv.6*
+#{_mandir}/man6/freeciv-ruledit.6*
+#{_mandir}/man6/freeciv-client.6*
+#{_mandir}/man6/freeciv-mp-cli.6*
+#{_mandir}/man6/freeciv-modpack*
+#{_mandir}/man6/freeciv-manual*
+#{_mandir}/man6/freeciv-ruleup.6*
 %{_datadir}/metainfo/org.freeciv*
-%{_datadir}/pixmaps/freeciv-client.png
-%{_datadir}/pixmaps/freeciv-modpack.png
-%{_datadir}/pixmaps/freeciv-ruledit.png
+#{_datadir}/pixmaps/freeciv-client.png
+#{_datadir}/pixmaps/freeciv-modpack.png
+#{_datadir}/pixmaps/freeciv-ruledit.png
 %{_iconsdir}/hicolor/*/apps/freeciv-modpack.png
 %{_iconsdir}/hicolor/*/apps/freeciv-client.png
 %{_iconsdir}/hicolor/*x*/apps/freeciv-ruledit.png
