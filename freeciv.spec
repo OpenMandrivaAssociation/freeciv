@@ -112,9 +112,10 @@ This is the server for freeciv.
 %meson \
 	-Dack_experimental=true \
 	-Dclients=sdl2,gtk3.22,gtk4,qt \
-	-Dfcmp=gtk4 \
+	-Dfcmp=gtk4,gtk3,cli,qt \
  	-Daudio=true \
-  	-Dqtver=qt6
+  	-Dqtver=qt6 \
+   	-Dserver=enabled
 %meson_build
 
 %install
