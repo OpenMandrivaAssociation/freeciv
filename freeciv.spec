@@ -45,7 +45,6 @@ you prefer classic Civilization(r) 2-d view, invoke the client with
 Group:		Games/Strategy
 Summary:	FREE CIVilization clone - data files
 Requires:	%{name}-server = %{version}
-BuildArch:	noarch
 
 %description	data
 Freeciv is a multiplayer strategy game, released under the GNU General
