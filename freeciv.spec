@@ -200,13 +200,13 @@ desktop-file-install --vendor="" \
 
 %files client-qt
 %{_bindir}/freeciv-qt
-%{_bindir)/freeciv-mp-qt
+%{_bindir}/freeciv-mp-qt
 %{_datadir}/applications/org.freeciv.qt.desktop
 %{_datadir}/applications/org.freeciv.qt.mp.desktop
 
 %files client-gtk
-%{_bindir)/freeciv-gtk3.22
-%{_bindir)/freeciv-mp-gtk3
+%{_bindir}/freeciv-gtk3.22
+%{_bindir}/freeciv-mp-gtk3
 %{_datadir}/applications/org.freeciv.gtk3.mp.desktop
 %{_datadir}/applications/org.freeciv.gtk322.desktop
 
