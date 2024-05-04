@@ -169,16 +169,16 @@ desktop-file-install --vendor="" \
 %{_libdir}/libfreeciv.so
 
 %files client-common
-%{_bindir}/man6/freeciv-manual
-%{_bindir}/man6/freeciv-mp-cli
-%{_bindir}/man6/freeciv-ruleup
+%{_bindir}/freeciv-manual
+%{_bindir}/freeciv-mp-cli
+%{_bindir}/freeciv-ruleup
 %{_mandir}/man6/freeciv-client.6*
-%{_mandir}/man6/freeciv-gtk3.22.6*
+#{_mandir}/man6/freeciv-gtk3.22.6*
 %{_mandir}/man6/freeciv-gtk4.6*
 %{_mandir}/man6/freeciv-manual.6*
 %{_mandir}/man6/freeciv-modpack.6*
 %{_mandir}/man6/freeciv-mp-cli.6*
-%{_mandir}/man6/freeciv-mp-gtk3.6*
+#{_mandir}/man6/freeciv-mp-gtk3.6*
 %{_mandir}/man6/freeciv-mp-gtk4.6*
 %{_mandir}/man6/freeciv-mp-qt.6*
 %{_mandir}/man6/freeciv-qt.6*
