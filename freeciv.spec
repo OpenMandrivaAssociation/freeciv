@@ -71,12 +71,12 @@ This is the graphical client for freeciv
 
 %package	client-qt
 Group:		Games/Strategy
-Summary:	FREE CIVilization clone - Qt client
+Summary:	FREE CIVilization clone - Qt6 client
 Requires:	%{name}-client-common = %{EVRD}
 Provides:	%{name}-client = %{EVRD}
 
 %description	client-qt
-FREE CIVilization clone - Qt client
+FREE CIVilization clone - Qt6 client
 
 %package	client-sdl
 Group:		Games/Strategy
@@ -89,12 +89,21 @@ FREE CIVilization clone - SDL client
 
 %package	client-gtk
 Group:		Games/Strategy
-Summary:	FREE CIVilization clone - gtk client
+Summary:	FREE CIVilization clone - gtk3 client
 Requires:       %{name}-client-common = %{EVRD}
 Provides:	%{name}-client = %{EVRD}
 
 %description	client-gtk
-FREE CIVilization clone - gtk client
+FREE CIVilization clone - gtk3 client
+
+%package	client-gtk4
+Group:		Games/Strategy
+Summary:	FREE CIVilization clone - gtk4 client
+Requires:       %{name}-client-common = %{EVRD}
+Provides:	%{name}-client = %{EVRD}
+
+%description	client-gtk4
+FREE CIVilization clone - gtk4 client
 
 %package	server
 Group:		Games/Strategy
@@ -157,50 +166,58 @@ desktop-file-install --vendor="" \
 
 %files -f %{name}-core.lang -f freeciv-nations.lang -f freeciv-ruledit.lang data
 %doc AUTHORS doc/BUGS doc/HOWTOPLAY NEWS doc/README doc/README.AI doc/README.graphics doc/README.rulesets doc/README.sound doc/HACKING
-#{_gamesdatadir}/%{name}
+%{_datadir}/freeciv/
+%{_libdir}/libfreeciv.so
 
 %files client-common
-#{_gamesbindir}/freeciv-manual
-#{_gamesbindir}/freeciv-ruledit
-#{_gamesbindir}/freeciv-ruleup
-#{_datadir}/applications/org.freeciv.ruledit.desktop
-#{_mandir}/man6/freeciv.6*
-#{_mandir}/man6/freeciv-ruledit.6*
-#{_mandir}/man6/freeciv-client.6*
-#{_mandir}/man6/freeciv-mp-cli.6*
-#{_mandir}/man6/freeciv-modpack*
-#{_mandir}/man6/freeciv-manual*
-#{_mandir}/man6/freeciv-ruleup.6*
+%{_bindir}/freeciv-manual
+%{_bindir}/freeciv-mp-cli
+%{_bindir}/freeciv-ruleup
+%{_mandir}/freeciv-client.6
+%{_mandir}/freeciv-gtk3.22.6
+%{_mandir}/freeciv-gtk4.6
+%{_mandir}/freeciv-manual.6
+%{_mandir}/freeciv-modpack.6
+%{_mandir}/freeciv-mp-cli.6
+%{_mandir}/freeciv-mp-gtk3.6
+%{_mandir}/freeciv-mp-gtk4.6
+%{_mandir}/freeciv-mp-qt.6
+%{_mandir}/freeciv-qt.6
+%{_mandir}/freeciv-ruledit.6
+%{_mandir}/freeciv-ruleup.6
+%{_mandir}/freeciv-sdl2.6
+%{_mandir}/freeciv-server.6
+%{_mandir}/freeciv.6
 %{_datadir}/metainfo/org.freeciv*
-#{_datadir}/pixmaps/freeciv-client.png
-#{_datadir}/pixmaps/freeciv-modpack.png
-#{_datadir}/pixmaps/freeciv-ruledit.png
 %{_iconsdir}/hicolor/*/apps/freeciv-modpack.png
 %{_iconsdir}/hicolor/*/apps/freeciv-client.png
 %{_iconsdir}/hicolor/*x*/apps/freeciv-ruledit.png
 %doc %{_docdir}/%{name}
 
 %files client-sdl
-#{_gamesbindir}/freeciv-sdl2
-#{_datadir}/applications/org.freeciv.sdl2.desktop
-#{_mandir}/man6/freeciv-sdl*
+%{_bindir}/freeciv-sdl2
+%{_datadir}/applications/org.freeciv.sdl2.desktop
 
 %files client-qt
-#{_gamesbindir}/freeciv-qt
+%{_bindir}/freeciv-qt
+%{_bindir)/freeciv-mp-qt
 %{_datadir}/applications/org.freeciv.qt.desktop
-#{_mandir}/man6/freeciv-mp-qt.6.*
-#{_mandir}/man6/freeciv-qt.6.*
+%{_datadir}/applications/org.freeciv.qt.mp.desktop
 
 %files client-gtk
-#{_gamesbindir}/freeciv-mp-gtk3
-#{_mandir}/man6/freeciv-mp-gtk2.6*
-#{_mandir}/man6/freeciv-mp-gtk4.6.zst
-#{_datadir}/applications/org.freeciv.mp.gtk3.desktop
+%{_bindir)/freeciv-gtk3.22
+%{_bindir)/freeciv-mp-gtk3
+%{_datadir}/applications/org.freeciv.gtk3.mp.desktop
+%{_datadir}/applications/org.freeciv.gtk322.desktop
+
+%files client-gtk4
+%{_bindir}/freeciv-gtk4
+%{_bindir}/freeciv-mp-gtk4
+%{_datadir}/applications/org.freeciv.gtk4.desktop
+%{_datadir}/applications/org.freeciv.gtk4.mp.desktop
 
 %files server
-#{_gamesbindir}/civserver.real
-#{_gamesbindir}/freeciv-server
-#{_mandir}/man6/freeciv-server.6*
-#{_datadir}/applications/org.freeciv.server.desktop
-#{_iconsdir}/hicolor/*/apps/freeciv-server.png
-#_sysconfdir/freeciv
+%{_bindir}/freeciv-server
+%{_datadir}/applications/org.freeciv.server.desktop
+%{_iconsdir}/hicolor/*x*/apps/freeciv-server.png
+%{_sysconfdir}/freeciv/database.lua
