@@ -1,7 +1,7 @@
 %define _disable_ld_no_undefined 1
 
 Name:		freeciv
-Version:	3.1.3
+Version:	3.1.4
 Release:	1
 Source0:	https://files.freeciv.org/stable/freeciv-%{version}.tar.xz
 Summary:	CIVilization clone
