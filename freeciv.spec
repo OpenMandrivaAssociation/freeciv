@@ -120,7 +120,7 @@ This is the server for freeciv.
 %meson \
 	-Dclients=sdl2,gtk3.22,gtk4,qt \
 	-Dfcmp=gtk4,gtk3,cli,qt \
- 	-Daudio=true \
+ 	-Daudio=sdl2 \
   	-Dqtver=qt6 \
    	-Dserver=enabled
 %meson_build
