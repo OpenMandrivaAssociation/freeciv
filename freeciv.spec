@@ -16,8 +16,8 @@ BuildRequires:	locales-extra-charsets
 BuildRequires:	pkgconfig(SDL2_mixer)
 BuildRequires:	pkgconfig(SDL2_gfx)
 BuildRequires:	pkgconfig(SDL2_image)
-BuildRequires:	pkgconfig(sdl3-ttf)
-BuildRequires:	pkgconfig(sdl3)
+BuildRequires:	pkgconfig(sdl2-ttf)
+BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(sqlite3)
 BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	pkgconfig(libcurl)
@@ -120,7 +120,7 @@ This is the server for freeciv.
 %meson \
 	-Dclients=sdl2,gtk3.22,gtk4,qt \
 	-Dfcmp=gtk4,gtk3,cli,qt \
- 	-Daudio=sdl3 \
+ 	-Daudio=sdl2 \
   	-Dqtver=qt6 \
    	-Dserver=enabled
 %meson_build
