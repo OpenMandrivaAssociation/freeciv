@@ -16,7 +16,7 @@ BuildRequires:	locales-extra-charsets
 BuildRequires:	pkgconfig(SDL2_mixer)
 BuildRequires:	pkgconfig(SDL2_gfx)
 BuildRequires:	pkgconfig(SDL2_image)
-BuildRequires:	pkgconfig(sdl2-ttf)
+BuildRequires:	pkgconfig(SDL2_ttf)
 BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(sqlite3)
 BuildRequires:	pkgconfig(ncurses)
